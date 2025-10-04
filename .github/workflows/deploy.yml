@@ -1,9 +1,9 @@
-name: Deploy via SSH
+name: Deploy to Amazon EC2
 
 on:
   push:
     branches:
-      - main  # Executa o deploy apenas quando houver push na branch main
+      - main  # dispara o deploy quando há push na branch main
 
 jobs:
   deploy:
@@ -13,22 +13,33 @@ jobs:
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Enviar arquivos para o servidor via SSH
+      # (Opcional) Se precisar compilar ou gerar build local
+      # - name: Instalar dependências
+      #   run: npm install && npm run build
+
+      - name: Copiar arquivos para EC2 via SSH
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "./"          # diretório local (raiz do repo)
-          target: "/var/www/meuapp"  # diretório remoto
+          source: "./"
+          target: "/home/ec2-user/app"
 
-      - name: Executar comandos no servidor remoto
+      - name: Executar comandos remotos na EC2
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /var/www/meuapp
-            docker compose down
+            cd /home/ec2-user/app
+            echo "==> Atualizando pacotes e permissões..."
+            sudo chown -R ec2-user:ec2-user /home/ec2-user/app
+            sudo chmod -R 755 /home/ec2-user/app
+
+            echo "==> Rodando Docker Compose (ou outro serviço)..."
+            docker compose down || true
             docker compose up -d --build
+
+            echo "==> Deploy finalizado com sucesso!"
