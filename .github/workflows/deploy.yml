@@ -53,5 +53,5 @@ jobs:
             pkill -f "dotnet" || true
 
             # Executa a aplicação em background (ajuste o nome do .dll)
-            nohup dotnet /home/admin/app/SeuProjeto.dll > app.log 2>&1 &
+            nohup dotnet /home/admin/app/DotNetPipeline.dll > app.log 2>&1 &
             echo "==> Deploy finalizado com sucesso!"
