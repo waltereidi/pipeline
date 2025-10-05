@@ -5,3 +5,4 @@
 /.vs
 /DotNetPipeline/bin/Debug/net8.0
 /DotNetPipeline/obj
+/DotNetPipeline/bin/Release/net8.0
