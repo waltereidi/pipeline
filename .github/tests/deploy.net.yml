@@ -34,7 +34,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "./publish/*"
-          target: "/home/ec2-user/app"
+          target: "/home/admin/app"
 
       - name: Executar comandos remotos na EC2
         uses: appleboy/ssh-action@v0.1.7
@@ -43,15 +43,15 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/ec2-user/app
+            cd /home/admin/app
             echo "==> Atualizando permissões..."
-            sudo chown -R ec2-user:ec2-user /home/ec2-user/app
-            sudo chmod -R 755 /home/ec2-user/app
+            sudo chown -R admin:admin /home/admin/app
+            sudo chmod -R 755 /home/admin/app
 
             echo "==> Reiniciando aplicação .NET..."
             # Encerra o processo anterior (caso exista)
             pkill -f "dotnet" || true
 
             # Executa a aplicação em background (ajuste o nome do .dll)
-            nohup dotnet /home/ec2-user/app/SeuProjeto.dll > app.log 2>&1 &
+            nohup dotnet /home/admin/app/SeuProjeto.dll > app.log 2>&1 &
             echo "==> Deploy finalizado com sucesso!"
