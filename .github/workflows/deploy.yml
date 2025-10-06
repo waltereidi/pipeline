@@ -51,6 +51,9 @@ jobs:
             sudo chown -R ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }} /home/${{ secrets.SSH_USER }}/app
             sudo chmod -R 755 /home/${{ secrets.SSH_USER }}/app
 
+            echo "==> Listando processos .NET antes de encerrar..."
+            ps aux | grep dotnet || echo "Nenhum processo .NET encontrado"
+            
             echo "==> Finalizando processos .NET antigos..."
             sudo pkill -f "dotnet" || true
 
