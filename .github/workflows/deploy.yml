@@ -45,8 +45,8 @@ jobs:
           script: |
             cd /home/ ${{ secrets.SSH_USER }}/app
             echo "==> Atualizando permissões..."
-            sudo chown -R  ${{ secrets.SSH_USER }}: ${{ secrets.SSH_USER }} /home/ ${{ secrets.SSH_USER }}/app
-            sudo chmod -R 755 /home/ ${{ secrets.SSH_USER }}/app
+            sudo chown -R  ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }}/home/${{ secrets.SSH_USER }}/app
+            sudo chmod -R 755 /home/${{ secrets.SSH_USER }}/app
 
             echo "==> Reiniciando aplicação .NET..."
             sudo pkill -f "dotnet" || true
