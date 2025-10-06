@@ -51,9 +51,6 @@ jobs:
             sudo chown -R ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }} /home/${{ secrets.SSH_USER }}/app
             sudo chmod -R 755 /home/${{ secrets.SSH_USER }}/app
 
-            echo "==> Finalizando processos .NET antigos..."
-            sudo pkill -f "DotNetPipeline.dll" || true
-
             echo "==> Iniciando aplicação .NET..."
             sudo nohup env ASPNETCORE_ENVIRONMENT=Production \
               dotnet /home/${{ secrets.SSH_USER }}/app/publish/DotNetPipeline.dll \
