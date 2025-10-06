@@ -52,7 +52,7 @@ jobs:
             sudo chmod -R 755 /home/${{ secrets.SSH_USER }}/app
 
             echo "==> Iniciando aplicação .NET..."
-            sudo  pkill -f "dotnet" && nohup env ASPNETCORE_ENVIRONMENT=Production \
+            sudo  nohup env ASPNETCORE_ENVIRONMENT=Production \
               dotnet /home/${{ secrets.SSH_USER }}/app/publish/DotNetPipeline.dll \
               --urls "http://0.0.0.0:80" > /home/${{ secrets.SSH_USER }}/app/app.log 2>&1 &
 
