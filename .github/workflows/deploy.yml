@@ -43,13 +43,13 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/***/app
+            cd /home/username/app
             echo "==> Atualizando permissões..."
-            sudo chown -R ***:*** /home/***/app
-            sudo chmod -R 755 /home/***/app
+            sudo chown -R username:username /home/username/app
+            sudo chmod -R 755 /home/username/app
 
             echo "==> Reiniciando aplicação .NET..."
             pkill -f "dotnet" || true
-            nohup env ASPNETCORE_ENVIRONMENT=Production dotnet /home/***/app/publish/DotNetPipeline.dll --urls "http://0.0.0.0:80" > app.log 2>&1 & || true
+            nohup env ASPNETCORE_ENVIRONMENT=Production dotnet /home/username/app/publish/DotNetPipeline.dll --urls "http://0.0.0.0:80" > app.log 2>&1 & || true
 
             echo "==> Deploy finalizado com sucesso!"
