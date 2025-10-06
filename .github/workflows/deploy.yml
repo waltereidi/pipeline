@@ -49,7 +49,7 @@ jobs:
             sudo chmod -R 755 /home/***/app
 
             echo "==> Reiniciando aplicação .NET..."
-            sudo pkill -f "dotnet" || true
-            sudo nohup env ASPNETCORE_ENVIRONMENT=Production dotnet /home/***/app/publish/DotNetPipeline.dll --urls "http://0.0.0.0:80" > app.log 2>&1 & || true
+            pkill -f "dotnet" || true
+            nohup env ASPNETCORE_ENVIRONMENT=Production dotnet /home/***/app/publish/DotNetPipeline.dll --urls "http://0.0.0.0:80" > app.log 2>&1 & || true
 
             echo "==> Deploy finalizado com sucesso!"
