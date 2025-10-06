@@ -43,7 +43,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/ ${{ secrets.SSH_USER }}/app
+            cd /home/${{ secrets.SSH_USER }}/app
             echo "==> Atualizando permissões..."
             sudo chown -R  ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }}/home/${{ secrets.SSH_USER }}/app
             sudo chmod -R 755 /home/${{ secrets.SSH_USER }}/app
