@@ -50,7 +50,7 @@ jobs:
 
             echo "==> Reiniciando aplicação .NET..."
             # Encerra o processo anterior (caso exista)
-            pkill -f "dotnet" || true
+            sudo pkill -f "dotnet" || true
 
             # Executa a aplicação em background (ajuste o nome do .dll)
             sudo nohup env ASPNETCORE_ENVIRONMENT=Production dotnet /home/admin/app/publish/DotNetPipeline.dll --urls "http://0.0.0.0:80" > app.log 2>&1 &
