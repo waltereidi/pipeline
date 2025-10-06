@@ -42,16 +42,14 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /home/admin/app
-            echo "==> Atualizando permissões..."
-            sudo chown -R admin:admin /home/admin/app
-            sudo chmod -R 755 /home/admin/app
+        script: |
+          cd /home/***/app
+          echo "==> Atualizando permissões..."
+          sudo chown -R ***:*** /home/***/app
+          sudo chmod -R 755 /home/***/app
 
-            echo "==> Reiniciando aplicação .NET..."
-            # Encerra o processo anterior (caso exista)
-            sudo pkill -f "dotnet" || true
+          echo "==> Reiniciando aplicação .NET..."
+          sudo pkill -f "dotnet" || true
+          sudo nohup env ASPNETCORE_ENVIRONMENT=Production dotnet /home/***/app/publish/DotNetPipeline.dll --urls "http://0.0.0.0:80" > app.log 2>&1 & || true
 
-            # Executa a aplicação em background (ajuste o nome do .dll)
-            sudo nohup env ASPNETCORE_ENVIRONMENT=Production dotnet /home/admin/app/publish/DotNetPipeline.dll --urls "http://0.0.0.0:80" > app.log 2>&1 &
-            echo "==> Deploy finalizado com sucesso!"
+          echo "==> Deploy finalizado com sucesso!"
