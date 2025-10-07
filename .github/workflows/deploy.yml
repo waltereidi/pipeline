@@ -53,7 +53,7 @@ jobs:
             
             echo "matando todos os processos"
 
-            sudo sh /home/exec.sh
+            sudo nohup sh /home/exec.sh
 
             echo "==> Iniciando aplicação .NET..."
             sudo nohup env ASPNETCORE_ENVIRONMENT=Production dotnet /home/${{ secrets.SSH_USER }}/app/publish/DotNetPipeline.dll --urls "http://0.0.0.0:80" > app.log 2>&1 &
