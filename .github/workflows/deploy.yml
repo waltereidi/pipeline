@@ -50,7 +50,10 @@ jobs:
             echo "==> Atualizando permissões..."
             sudo chown -R ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }} /home/${{ secrets.SSH_USER }}/app
             sudo chmod -R 755 /home/${{ secrets.SSH_USER }}/app
+            
+            echo "matando todos os processos"
 
+            sudo pkill -f dotnet 
             echo "==> Iniciando aplicação .NET..."
             sudo nohup env ASPNETCORE_ENVIRONMENT=Production dotnet /home/${{ secrets.SSH_USER }}/app/publish/DotNetPipeline.dll --urls "http://0.0.0.0:80" > app.log 2>&1 &
 
