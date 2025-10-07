@@ -53,7 +53,8 @@ jobs:
             
             echo "matando todos os processos"
 
-            sudo pkill -f dotnet || true
+            sudo pgrep -f "dotnet" && pkill -f "/home/admin/app/publish/DotNetPipeline.dll" || echo "Nenhum processo ativo."
+            
             echo "==> Iniciando aplicação .NET..."
             sudo nohup env ASPNETCORE_ENVIRONMENT=Production dotnet /home/${{ secrets.SSH_USER }}/app/publish/DotNetPipeline.dll --urls "http://0.0.0.0:80" > app.log 2>&1 &
 
