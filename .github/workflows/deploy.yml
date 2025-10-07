@@ -34,7 +34,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "publish/*"
-          target: "/home/${{ secrets.SSH_USER }}/app/publish"
+          target: "/home/${{ secrets.SSH_USER }}/app"
           overwrite: true
 
       - name: Executar comandos remotos na EC2
