@@ -36,7 +36,7 @@ jobs:
           source: "publish/*"
           target: "/home/${{ secrets.SSH_USER }}/app"
           overwrite: true
-      - name: Executar comandos remotos na EC2
+      - name: Matar instancias rodando do dotnet
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
