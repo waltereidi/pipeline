@@ -36,6 +36,14 @@ jobs:
           source: "publish/*"
           target: "/home/${{ secrets.SSH_USER }}/app"
           overwrite: true
+      - name: Executar comandos remotos na EC2
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo pkill -f dotnet
 
       - name: Executar comandos remotos na EC2
         uses: appleboy/ssh-action@v0.1.7
@@ -50,10 +58,6 @@ jobs:
             echo "==> Atualizando permissões..."
             sudo chown -R ${{ secrets.SSH_USER }}:${{ secrets.SSH_USER }} /home/${{ secrets.SSH_USER }}/app
             sudo chmod -R 755 /home/${{ secrets.SSH_USER }}/app
-            
-            echo "matando todos os processos"
-
-            sudo nohup sh /home/exec.sh
 
             echo "==> Iniciando aplicação .NET..."
             sudo nohup env ASPNETCORE_ENVIRONMENT=Production dotnet /home/${{ secrets.SSH_USER }}/app/publish/DotNetPipeline.dll --urls "http://0.0.0.0:80" > app.log 2>&1 &
