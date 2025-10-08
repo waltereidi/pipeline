@@ -1,0 +1,6 @@
+@Framework.AuthApi_HostAddress = http://localhost:5044
+
+GET {{Framework.AuthApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
