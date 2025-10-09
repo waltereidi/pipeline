@@ -3,11 +3,6 @@
 ##    https://help.github.com/en/articles/metadata-syntax-for-github-actions
 
 name: dotnet-tests-report
-author: EBekker
-description: |
-  Executes .NET (dotnet) tests within a GitHub Workflow
-  and produces Tests Report.
-
 ## Here you describe your *formal* inputs -- those that are
 ## documented and can be displayed by the marketplace.
 ## You also use these to identify the *required* inputs.
