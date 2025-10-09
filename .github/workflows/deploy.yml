@@ -15,3 +15,5 @@ jobs:
 
       - name: OpenCommit — improve commits with AI 🧙
         uses: di-sukharev/opencommit@github-action-v1.0.2
+        env:
+          OCO_OPENAI_API_KEY: ${{ secrets.OCO_OPENAI_API_KEY }}
