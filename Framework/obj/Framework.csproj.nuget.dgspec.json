@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\walte\\source\\repos\\DotNetPipeline\\Framework\\Framework.csproj": {}
+    "C:\\Users\\walte\\source\\repos\\waltereidi\\pipeline\\Framework\\Framework.csproj": {}
   },
   "projects": {
-    "C:\\Users\\walte\\source\\repos\\DotNetPipeline\\Framework\\Framework.csproj": {
+    "C:\\Users\\walte\\source\\repos\\waltereidi\\pipeline\\Framework\\Framework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\walte\\source\\repos\\DotNetPipeline\\Framework\\Framework.csproj",
+        "projectUniqueName": "C:\\Users\\walte\\source\\repos\\waltereidi\\pipeline\\Framework\\Framework.csproj",
         "projectName": "Framework",
-        "projectPath": "C:\\Users\\walte\\source\\repos\\DotNetPipeline\\Framework\\Framework.csproj",
+        "projectPath": "C:\\Users\\walte\\source\\repos\\waltereidi\\pipeline\\Framework\\Framework.csproj",
         "packagesPath": "C:\\Users\\walte\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\walte\\source\\repos\\DotNetPipeline\\Framework\\obj\\",
+        "outputPath": "C:\\Users\\walte\\source\\repos\\waltereidi\\pipeline\\Framework\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
