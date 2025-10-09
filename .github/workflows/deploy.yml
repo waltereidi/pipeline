@@ -3,17 +3,27 @@ name: Deploy .NET App to Amazon EC2
 on:
   push:
     branches:
-      - main  # dispara o deploy quando há push na branch main
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
 
-      - name: unit tests for Contoso Business Layer
+      - name: Instalar SDK do .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'  # ou a versão que você usa
+
+      - name: Restaurar dependências
+        run: dotnet restore
+
+      - name: Executar testes e gerar relatório
         uses: zyborg/dotnet-tests-report@v1
         with:
-          project_path: Framework.Tests
+          project_path: src/Framework.Tests/Framework.Tests.csproj # <---- caminho exato aqui
           report_name: TestesFramework
           report_title: TestesFramework
           github_token: ${{ secrets.GITHUB_TOKEN }}
