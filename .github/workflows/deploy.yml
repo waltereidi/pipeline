@@ -23,7 +23,7 @@ jobs:
       - name: Executar testes e gerar relatório
         uses: zyborg/dotnet-tests-report@v1
         with:
-          project_path: src/Framework.Tests/Framework.Tests.csproj # <---- caminho exato aqui
+          project_path: Framework.Tests/Framework.Tests.csproj # <---- caminho exato aqui
           report_name: TestesFramework
           report_title: TestesFramework
           github_token: ${{ secrets.GITHUB_TOKEN }}
